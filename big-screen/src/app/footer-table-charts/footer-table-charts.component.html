@@ -1,0 +1,20 @@
+<div class="box">
+  <div class="table uuchartback-line">
+    <div class="item" *ngFor="let item of itemsMessage">
+      <span class="message">{{item.message}}</span>
+      <span class="time">{{item.time}}</span>
+    </div>
+  </div>
+  <div class="chart uuchartback-line" echarts [options]="options"></div>
+  <div class="table uuchartback-line">
+    <!-- <div class="item" *ngFor="let item of itemsMessage">{{item.message}}
+      <span>{{item.time}}</span>
+    </div> -->
+  </div>
+  <div class="chart uuchartback-line" echarts [options]="options2"></div>
+  <div class="table uuchartback-line">
+    <!-- <div class="item" *ngFor="let item of itemsMessage">{{item.message}}
+      <span>{{item.time}}</span>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.list-box {
+  display: flex;
+}
+.list-box app-number-item  {
+  flex: 1;
+  max-width: 16.667vw;
+  height: 12.963vh;
+}

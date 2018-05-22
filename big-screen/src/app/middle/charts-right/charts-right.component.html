@@ -1,0 +1,24 @@
+<div class="table-name">全国各城市房源价格动态</div>
+<div class="table uuchartback-line">
+  <table>
+    <thead>
+      <tr>
+        <td>城市</td>
+        <td colspan="2">挂牌登记量(套)</td>
+        <td colspan="2">成交均价(元/m²)</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataList">
+        <td>{{item.city}}</td>
+        <td>{{item.register}}</td>
+        <td>{{item.registerPer}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.pricePer}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-name">今日租售房客源占比</div>
+<div class="chart uuchartback-bg" echarts [options]="options">
+</div>

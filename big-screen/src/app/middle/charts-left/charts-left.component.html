@@ -1,0 +1,28 @@
+<div class="charts-title">房源数据(万套)</div>
+<div class="charts uuchartback-line">
+  <div class="number-box">
+    <div class="number-item" *ngFor="let item of items">
+      <div class="number">{{item.number}}</div>
+      <div class="name">{{item.name}}</div>
+    </div>
+  </div>
+  <div class="progress-box">
+    <div class="progress-item" *ngFor="let item of itemsProgress">
+      <div class="name">{{item.name}}</div>
+      <div class="progress">
+        <div class="progress-overflow" [ngStyle]="{'width': item.progress + '%'}">
+          <div class="progress-in"></div>
+        </div>
+        <div class="progress-grey"></div>
+      </div>
+      <div class="number">{{item.number}}</div>
+    </div>
+  </div>
+</div>
+<div class="charts-title">
+  <div class="img"><img src="../../../assets/uu.png" alt=""></div>
+  <p>今日访问量 <span>23123</span></p>
+</div>
+<div class="charts uuchartback-line" echarts [options]="options">
+
+</div>

@@ -1,0 +1,33 @@
+.box {
+  display: flex;
+  .table {
+    flex: 1;
+    height: 23vh;
+    padding: 0 10px 0 5px;
+    margin-right: 0.781vw;
+    &:last-child {
+      margin-right: 0; 
+    }
+    .item {
+      height: 2.556vh;
+      font-size: .5em;
+      line-height: 2.556vh;
+      .message {
+        display: inline-block;
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .time {
+        float: right;
+        text-align: right;
+      }
+    }
+  }
+  .chart {
+    flex: 1;
+    padding: 0 .521vw 0 .261vw;
+    margin-right: 0.781vw;
+  }
+}

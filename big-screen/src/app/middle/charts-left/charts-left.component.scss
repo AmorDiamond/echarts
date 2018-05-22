@@ -1,0 +1,74 @@
+.charts-title {
+  display: flex;
+  height: 6.019vh;
+  font-size: 1em;
+  line-height: 6.019vh;
+  .img {
+    flex: 1;
+    img {
+      height: 50%;
+      vertical-align: middle;
+    }
+  }
+  // p {
+  //   line-height: unset;
+  // }
+}
+.charts {
+  height: 19vh;
+}
+.number-box {
+  display: flex;
+  .number-item {
+    flex: 1;
+    height: 8.333vh;
+    text-align: center;
+    .number {
+      height: 4.333vh;
+      line-height: 4.333vh;
+      font-size: 1.2vw;
+      color: #01e5ff;
+    }
+    .name {
+      height: 4vh;
+      // line-height: 4vh;
+    }
+  }
+}
+
+.progress-box {
+  height: 10.7vh;
+  padding: 0 .8vw;
+  font-size: .5vw;
+  .progress-item {
+    height: 33%;
+    display: flex;
+    .name {
+      flex: 2;
+    }
+    .progress {
+      position: relative;
+      flex: 3;
+      .progress-overflow {
+        overflow: hidden;
+        height: 1vh;
+        .progress-in {
+          height: 100%;
+          background: linear-gradient(to right, #2692cb, #00dbb2);
+        }
+      }
+      .progress-grey {
+        position: absolute;
+        width: 100%;
+        height: 1vh;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        background: #042d4e;
+      }
+    }
+    .number {
+      flex: 1;
+    }
+  }
+}

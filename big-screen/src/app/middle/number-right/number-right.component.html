@@ -1,0 +1,11 @@
+<div class="number-title">24小时委托量</div>
+<div class="number-first">
+  <div *ngFor="let item of items">{{item}}</div>
+  <div style="background: transparent"></div>
+</div>
+<div class="number-list">
+  <div *ngFor="let item of numberList">
+    <div class="number-title">{{item.name}}</div>
+    <div class="number">{{item.total}}</div>
+  </div>
+</div>

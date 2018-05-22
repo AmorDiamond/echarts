@@ -1,0 +1,28 @@
+.number-title {
+  height: 6.019vh;
+  font-size: 1em;
+  line-height: 6.019vh;
+}
+.number-first {
+  display: flex;
+  div {
+    flex: 1;
+    width: 1.563vw;
+    height: 3.704vh;
+    line-height: 3.704vh;
+    margin-right: 20px;
+    text-align: center;
+    font-size: 1.5em;
+    color: #fbffff;
+    background: linear-gradient(#366bcf, #2552a3, #366bcf);
+  }
+}
+.number-list {
+  margin-top: 4.63vh;
+
+  .number {
+    font-size: 1.4vw;
+    margin-left: 1.4vw;
+    color: #08f2ff;
+  }
+}

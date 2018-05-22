@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/normalize.css/normalize.css';
+body {
+  padding: 0 1.771vw;
+  height: 100vh;
+  overflow: hidden;
+  background: url('./assets/background.jpg');
+  background-size: 100% 100%;
+  color: #fefffd;
+}
+p {
+  margin: 5px 0;
+  /* line-height: 100%; */
+}
+.uuchartback-bg {
+  background-image: url('./assets/uuchartback_bg.png');
+  background-size: 100% 100%;
+}
+.uuchartback-line {
+  background-image: url('./assets/uuchartback_line.png');
+  background-size: 100% 100%;
+}
