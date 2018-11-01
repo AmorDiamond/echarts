@@ -1,3 +1,55 @@
 .echart-item{
-    height: 300px;
+    height: 100%;
 }
+/*editorLayout*/
+.main-container #code-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    padding-top: 30px;
+    width: 50%;
+}
+.main-container #code-container .run-handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    background: #2f3129;
+}
+.main-container #code-container .run-submit {
+    float: right;
+    border: none;
+    background: #000;
+    color: lime;
+    padding: 0 10px;
+    outline: none;
+}
+.main-container .right-container {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    padding: 50px 0;
+    padding-left: 5px;
+    border: none;
+    z-index: 30;
+    background: #191919;
+}
+.main-container .code-con {
+    height: 100%;
+}
+.main-container .handler {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    cursor: col-resize;
+    z-index: 100;
+    background-color: transparent;
+    border-left: 1px solid #f00;
+}
+/*End*/

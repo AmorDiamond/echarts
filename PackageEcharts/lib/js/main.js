@@ -8,6 +8,7 @@ require.config({
     bootstrap: 'bootstrap/js/bootstrap.min.js',
     echarts: 'echarts',
     echartsConfig: 'echarts.config',
+    commonEditor: 'common.editor',
   },
   // 用来配置不兼容的模块，意思是：该模块没有module.exports,
   // jquery就有module.exports输出值

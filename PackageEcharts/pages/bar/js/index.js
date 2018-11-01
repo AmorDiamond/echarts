@@ -35,7 +35,7 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts
   var myChart = echarts.init(document.getElementById('line'));
   var option = {
     title: {
-      text: '折线图',
+      text: '柱状图',
       left: 'center',
       textStyle: echartsConfig.titleStyle
     },
@@ -63,7 +63,7 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts
     xAxis: {
       type: 'category',
       axisLabel: echartsConfig.axisLabel,
-      boundaryGap: false,
+      // boundaryGap: false,
       data: []
     },
     yAxis: {
@@ -122,7 +122,7 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts
       legendData.push(item);
       var seriseItem = {
         name: item,
-        type: 'line',
+        type: 'bar',
         data: [],
       };
       if (xAxisData.length < 1) {
