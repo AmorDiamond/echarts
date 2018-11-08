@@ -1,4 +1,4 @@
-require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts, echartsConfig, $, commonEditor) {
+require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ace/ace', 'ace/ext/language_tools'], function (echarts, echartsConfig, $, commonEditor, http, ace) {
   console.log(ace)
   var editor = ace.edit("line-value",{theme: "ace/theme/monokai",});
   ace.require("ace/ext/language_tools");
@@ -10,6 +10,7 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts
   });
 
   var data;
+  var requestUrl = window.location.search;
 /*  var test = `var data = [
     {category: '周一', type: '邮件营销', value: 120},
     {category: '周二', type: '邮件营销', value: 100},
@@ -76,24 +77,29 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts
     series: []
   };
   function initEchart() {
-    var data2 = `data = [
-    {category: '周一', type: '邮件营销', value: 120},
-    {category: '周二', type: '邮件营销', value: 100},
-    {category: '周三', type: '邮件营销', value: 130},
-    {category: '周四', type: '邮件营销', value: 150},
-    {category: '周五', type: '邮件营销', value: 180},
-    {category: '周一', type: '联盟广告', value: 100},
-    {category: '周二', type: '联盟广告', value: 130},
-    {category: '周三', type: '联盟广告', value: 150},
-    {category: '周四', type: '联盟广告', value: 170},
-    {category: '周五', type: '联盟广告', value: 200},
-    {category: '周一', type: '视频广告', value: 130},
-    {category: '周二', type: '视频广告', value: 150},
-    {category: '周三', type: '视频广告', value: 170},
-    {category: '周四', type: '视频广告', value: 160},
-    {category: '周五', type: '视频广告', value: 210},
-  ];`
-    editor.setValue(data2);
+    var aceDataString;
+    if (requestUrl) {
+      aceDataString = data;
+    }else {
+      aceDataString = `data = [
+        {category: '周一', type: '邮件营销', value: 120},
+        {category: '周二', type: '邮件营销', value: 100},
+        {category: '周三', type: '邮件营销', value: 130},
+        {category: '周四', type: '邮件营销', value: 150},
+        {category: '周五', type: '邮件营销', value: 180},
+        {category: '周一', type: '联盟广告', value: 100},
+        {category: '周二', type: '联盟广告', value: 130},
+        {category: '周三', type: '联盟广告', value: 150},
+        {category: '周四', type: '联盟广告', value: 170},
+        {category: '周五', type: '联盟广告', value: 200},
+        {category: '周一', type: '视频广告', value: 130},
+        {category: '周二', type: '视频广告', value: 150},
+        {category: '周三', type: '视频广告', value: 170},
+        {category: '周四', type: '视频广告', value: 160},
+        {category: '周五', type: '视频广告', value: 210},
+      ];`
+    }
+    editor.setValue(aceDataString);
     myChart.setOption(option);
     editor.on('change', function() {
       run();
@@ -368,8 +374,17 @@ function run () {
       }
     };
   }
-  initEchart();
-  run();
+  if (requestUrl) {
+    console.log(url);
+    http.get(requestUrl, function(res) {
+      data = res;
+      initEchart();
+      run();
+    });
+  }else {
+    initEchart();
+    run();
+  }
   initEventHandler(gb, myChart);
   setSplitPosition(0.4);
   /**/

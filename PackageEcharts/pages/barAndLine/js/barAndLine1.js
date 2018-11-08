@@ -1,4 +1,4 @@
-require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts, echartsConfig, $, commonEditor) {
+require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ace/ace', 'ace/ext/language_tools'], function (echarts, echartsConfig, $, commonEditor, http, ace) {
   console.log(ace)
   var editor = ace.edit("line-value",{theme: "ace/theme/monokai",});
   ace.require("ace/ext/language_tools");
@@ -10,6 +10,7 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts
   });
 
   var data;
+  var requestUrl = location.search;
   /*  var test = `var data = [
       {category: '周一', type: '邮件营销', value: 120},
       {category: '周二', type: '邮件营销', value: 100},
@@ -92,34 +93,39 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts
     series: []
   };
   function initEchart() {
-    var data2 = `data = [
-      {type: '邮件营销', categories: [
-          {category: '周一', value: 120},
-          {category: '周二', value: 100},
-          {category: '周三', value: 130},
-          {category: '周四', value: 150},
-          {category: '周五', value: 180},
-        ]
-      },
-      {type: '联盟广告', categories: [
-          {category: '周一', value: 100},
-          {category: '周二', value: 130},
-          {category: '周三', value: 150},
-          {category: '周四', value: 170},
-          {category: '周五', value: 200},
-        ]
-      },
-      {type: '金额', ratio: true, categories: [
-          {category: '周一', value: 1300},
-          {category: '周二', value: 1500},
-          {category: '周三', value: 1700},
-          {category: '周四', value: 1600},
-          {category: '周五', value: 2100},
-        ]
-      }
-    ];`;
+    var aceDataString;
+    if (requestUrl) {
+      aceDataString = data;
+    }else {
+      aceDataString = `data = [
+        {type: '邮件营销', categories: [
+            {category: '周一', value: 120},
+            {category: '周二', value: 100},
+            {category: '周三', value: 130},
+            {category: '周四', value: 150},
+            {category: '周五', value: 180},
+          ]
+        },
+        {type: '联盟广告', categories: [
+            {category: '周一', value: 100},
+            {category: '周二', value: 130},
+            {category: '周三', value: 150},
+            {category: '周四', value: 170},
+            {category: '周五', value: 200},
+          ]
+        },
+        {type: '金额', ratio: true, categories: [
+            {category: '周一', value: 1300},
+            {category: '周二', value: 1500},
+            {category: '周三', value: 1700},
+            {category: '周四', value: 1600},
+            {category: '周五', value: 2100},
+          ]
+        }
+      ];`;
+    }
 
-    editor.setValue(data2);
+    editor.setValue(aceDataString);
     myChart.setOption(option);
     editor.on('change', function() {
       run();
@@ -298,8 +304,17 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor'], function (echarts
     commonEditor.initEventHandler(gb, myChart);
 
   }
-  initEchart();
-  run();
+  if (requestUrl) {
+    console.log(url);
+    http.get(requestUrl, function(res) {
+      data = res;
+      initEchart();
+      run();
+    });
+  }else {
+    initEchart();
+    run();
+  }
   initEventHandler(gb, myChart);
   setSplitPosition(0.4);
   /**/

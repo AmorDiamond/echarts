@@ -2,90 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>列表</title>
+    <link rel="stylesheet" href="lib/css/bootstrap/css/bootstrap.min.css">
     <style>
-        .echart-item{
+        /*.page-item{
+            width: 33.33%;
+            float: left;
+            padding: 20px;
+        }
+        .page-item .img-box{
             width: 100%;
-            height: 300px;
+            height: 100px;
+        }*/
+        body{
+            background: #f3f3f3;
+        }
+        .full-container{
+            overflow: hidden;
+            padding-top: 15px;
+        }
+        .page-item{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .page-item .img-box img{
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        @media (min-width: 1600px) {
+            .col-xl-2 {
+                width: 16.66666667%;
+            }
         }
     </style>
 </head>
 <body>
-<div id="myEchart" class="echart-item"></div>
-<div class="container">
-    <div class="line-chart"><a href="pages/line">折线图</a></div>
+<div class="full-container">
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/line"><img src="lib/images/line.png" alt="折线图"></a></div>
+        <a href="pages/line">折线图</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/line/line1.html"><img src="lib/images/line1.png" alt="折线图2"></a></div>
+        <a href="pages/line/line1.html">折线图2</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/line/line2.html"><img src="lib/images/line2.png" alt="折线图3"></a></div>
+        <a href="pages/line/line2.html">折线图3</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/bar"><img src="lib/images/bar.png" alt="柱状图"></a></div>
+        <a href="pages/bar">柱状图</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/bar/bar1.html"><img src="lib/images/bar1.png" alt="柱状图2"></a></div>
+        <a href="pages/bar/bar1.html">柱状图2</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/bar/stackBar.html"><img src="lib/images/stackBar.png" alt="堆叠柱状图"></a></div>
+        <a href="pages/bar/stackBar.html">堆叠柱状图</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/bar/bilateralBar.html"><img src="lib/images/bilateralBar.png" alt="双向柱状图"></a></div>
+        <a href="pages/bar/bilateralBar.html">双向柱状图</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/barAndLine"><img src="lib/images/barAndLine.png" alt="柱状图&折线图"></a></div>
+        <a href="pages/barAndLine">柱状图&折线图</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/barAndLine/barAndLine1.html"><img src="lib/images/barAndLine1.png" alt="柱状图&折线图2"></a></div>
+        <a href="pages/barAndLine/barAndLine1.html">柱状图&折线图2</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/pie"><img src="lib/images/pie.png" alt="饼状图"></a></div>
+        <a href="pages/pie">饼状图</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/pie/pie1.html"><img src="lib/images/pie1.png" alt="饼状图2"></a></div>
+        <a href="pages/pie/pie1.html">饼状图2</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/pie/pie2.html"><img src="lib/images/pie2.png" alt="饼状图3"></a></div>
+        <a href="pages/pie/pie2.html">饼状图3</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/heatmap"><img src="lib/images/heatmap.png" alt="热力图"></a></div>
+        <a href="pages/heatmap">热力图</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/heatmap/heatMap1.html"><img src="lib/images/heatmap1.png" alt="热力图2"></a></div>
+        <a href="pages/heatmap/heatMap1.html">热力图2</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/guage"><img src="lib/images/guage.png" alt="仪表盘"></a></div>
+        <a href="pages/guage">仪表盘</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/liquidfill"><img src="lib/images/liquidfill.png" alt="水球图"></a></div>
+        <a href="pages/liquidfill">水球图</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/3Dbar"><img src="lib/images/3dbar.png" alt="3D柱状图"></a></div>
+        <a href="pages/3Dbar">3D柱状图</a>
+    </div>
+    <div class="page-item line-chart col-xl-2 col-md-4 col-lg-3 col-sm-6">
+        <div class="img-box"><a href="pages/3Dbar/bar1.html"><img src="lib/images/3dbar1.png" alt="3D柱状图2"></a></div>
+        <a href="pages/3Dbar/bar1.html">3D柱状图2</a>
+    </div>
 </div>
-<!--<script src="lib/js/echarts.js"></script>-->
-<script src="lib/js/require.min.js"></script>
-<script src="lib/js/main.js"></script>
-<script>
-  //    用require引入要引入的模块，[]：里面为引入的名称，已经在main.js里面的Paths设置好了
-  //    function（），小括号里面对应[]里面值，按顺序在()给变量名
-  //    jquery一般用 $, bootstrap模块没有输出，函数里面可以不用变量
-  require(['jquery','echarts', 'echartsConfig'],function ($, echarts, echartsConfig) {
-    console.log('echartConfig', echartsConfig);
-    var myEchart = echarts.init(document.getElementById('myEchart'));
-    var xAxisData = [];
-    var data1 = [];
-    var data2 = [];
-    for (var i = 0; i < 100; i++) {
-      xAxisData.push('类目' + i);
-      data1.push((Math.sin(i / 5) * (i / 5 -10) + i / 6) * 5);
-      data2.push((Math.cos(i / 5) * (i / 5 -10) + i / 6) * 5);
-    }
-
-    var option = {
-      title: {
-        text: '柱状图动画延迟'
-      },
-      legend: {
-        data: ['bar', 'bar2'],
-        align: 'left'
-      },
-      toolbox: {
-        // y: 'bottom',
-        feature: {
-          magicType: {
-            type: ['stack', 'tiled']
-          },
-          dataView: {},
-          saveAsImage: {
-            pixelRatio: 2
-          }
-        }
-      },
-      tooltip: {},
-      xAxis: {
-        data: xAxisData,
-        silent: false,
-        splitLine: {
-          show: false
-        }
-      },
-      yAxis: {
-      },
-      series: [{
-        name: 'bar',
-        type: 'bar',
-        data: data1,
-        animationDelay: function (idx) {
-          return idx * 10;
-        }
-      }, {
-        name: 'bar2',
-        type: 'bar',
-        data: data2,
-        animationDelay: function (idx) {
-          return idx * 10 + 100;
-        }
-      }],
-      animationEasing: 'elasticOut',
-      animationDelayUpdate: function (idx) {
-        return idx * 5;
-      }
-    };
-    myEchart.setOption(option);
-  });
-</script>
 </body>
 </html>
