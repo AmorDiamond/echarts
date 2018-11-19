@@ -10,6 +10,7 @@ require.config({
     echarts3: 'echarts.min.3.8.5',
     echartsConfig: 'echarts.config',
     commonEditor: 'common.editor',
+    common: 'common',
     httpRequest: 'http.request',
     ace: 'ace',
     echartsLiquidFill: 'echarts-liquidfill.min',

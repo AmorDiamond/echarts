@@ -1,4 +1,4 @@
-require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ace/ace', 'ace/ext/language_tools'], function (echarts, echartsConfig, $, commonEditor, http, ace) {
+require(['common', 'echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ace/ace', 'ace/ext/language_tools'], function (common, echarts, echartsConfig, $, commonEditor, http, ace) {
   console.log(ace)
   var editor = ace.edit("line-value",{theme: "ace/theme/monokai",});
   ace.require("ace/ext/language_tools");
@@ -10,7 +10,11 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ac
   });
 
   var data;
-  var requestUrl = window.location.search;
+  var locationParams = window.location.search;
+  var commonParams = common.locationParams(locationParams);
+  var requestUrl = commonParams.requestUrl;
+  var showAceEditor = commonParams.showAceEditor;
+  var chartTitle = decodeURI(commonParams.chartTitle);
   /*  var test = `var data = [
       {category: '周一', type: '邮件营销', value: 120},
       {category: '周二', type: '邮件营销', value: 100},
@@ -49,7 +53,7 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ac
       {
         name: '关系图',
         type: 'tree',
-        layout: 'radial',
+        // layout: 'radial',
         // symbol: 'emptyCircle',
         roam: true,
         initialTreeDepth: 1,
@@ -75,10 +79,115 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ac
             color: '#fff',
           }
         },
+        animationEasing: 'exponentialIn',
         animationDurationUpdate: 750
       }
     ]
   };
+  myChart.on('dblclick', function(event) {console.log('dblclick', event)})
+  myChart.on('click', function(event) {
+
+    /*图表点击事件更新显示数据*/
+      const dataType = event.data;
+      console.log(data)
+      if (dataType.isType && dataType.hasChildren) {
+        const seriesData = [];
+        // seriesData.push({name: '产业', symbolSize: 90, value: '产业', x: null, y: null, itemStyle: {normal: {color: '#5079d9'}}});
+        const links = [];
+        const copyObj = {};
+        data.forEach(function(item, index) {
+          if (item[1] !== '新经济') {
+          if (copyObj[item[1]]) {
+            if (item[3]) {
+              copyObj[item[1]].children.push({name: item[3], id: item[2], value: item[4]});
+            }
+          }else {
+            copyObj[item[1]] = {id: '', children: []};
+            copyObj[item[1]].id = item[0];
+            if (item[3]) {
+              copyObj[item[1]].children.push({name: item[3], id: item[2], value: item[4]});
+            }
+          }
+        }
+      });
+        console.log(copyObj)
+        for (const item in copyObj) {
+          if (item) {
+            const hasChildren = copyObj[item].children.length ? true : false;
+            seriesData.push({name: item, value: item, typeId: copyObj[item].id, isType: true, symbolSize: 14, hasChildren: hasChildren, children: [], itemStyle: {normal: {color: '#3e5f9c'}, emphasis: {color: '#3e5f9c'}}});
+            // links.push({source: item, target: '产业'});
+            const index = seriesData.length - 1;
+            // seriesData[index].children = [];
+            if (item === dataType.name && dataType.children.length < 1) {
+              copyObj[item].children.forEach(function(typeItem) {
+                seriesData[index].children.push({name: typeItem.name, value: typeItem.name, symbolSize: 10, children: [], itemStyle: {color: '#2a3653'}});
+              const childrenIndex = seriesData[index].children.length - 1;
+              seriesData[index].children[childrenIndex].children.push({name: '' + typeItem.value, value: '', symbolSize: 8, itemStyle: {normal: {color: '#1f232d'}, emphasis: {color: '#1f232d'}}});
+              // links.push({source: typeItem.name, target: item});
+              // links.push({source: typeItem.id, target: typeItem.name});
+            });
+            }
+          }
+        }
+        setTimeout(function() {
+          const option = {
+            title: {
+            },
+            tooltip: {
+            },
+            legend: [{
+            }],
+            series : [
+              {
+                name: '关系图',
+                type: 'tree',
+                layout: 'radial',
+                // symbol: 'emptyCircle',
+                roam: true,
+                initialTreeDepth: 2,
+                data: [{
+                  name: '产业',
+                  symbolSize: 20,
+                  children: seriesData
+                }],
+                lineStyle: {
+                  normal: {
+                    color: '#313131',
+                  }
+                },
+                itemStyle: {
+                  normal: {
+                    color: '#5079d9',
+                    borderWidth: 5,
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                  }
+                },
+                label: {
+                  normal: {
+                    color: '#fff',
+                  }
+                },
+                animationEasing: 'exponentialIn',
+                animationDurationUpdate: 750
+              }
+            ]
+          };
+        myChart.setOption(option, true);
+        /*this.updateOptions = {
+          series: [
+            {
+              initialTreeDepth: 2,
+              data: [{
+                name: '产业',
+                symbolSize: 20,
+                children: seriesData
+              }]
+            }
+          ]
+        };*/
+      }, 300);
+      }
+  })
   function initEchart() {
     var aceDataString;
     if (requestUrl) {
@@ -121,13 +230,13 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ac
         // links.push({source: item, target: '产业'});
         const index = seriesData.length - 1;
         // seriesData[index].children = [];
-        copyObj[item].children.forEach(function(typeItem) {
+        /*copyObj[item].children.forEach(function(typeItem) {
           seriesData[index].children.push({name: typeItem.name, value: typeItem.name, symbolSize: 10, children: [], itemStyle: {normal: {color: '#2a3653'}}});
           var childrenIndex = seriesData[index].children.length - 1;
           seriesData[index].children[childrenIndex].children.push({name: '' + typeItem.value, value: '', symbolSize: 8, itemStyle: {normal: {color: '#1f232d'}}});
           // links.push({source: typeItem.name, target: item});
           // links.push({source: typeItem.id, target: typeItem.name});
-        });
+        });*/
       }
     }
     var legendData = [];
@@ -182,7 +291,6 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ac
 
   }
   if (requestUrl) {
-    console.log(url);
     http.get(requestUrl, function(res) {
       data = res;
       initEchart();
@@ -192,7 +300,13 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ac
     initEchart();
     run();
   }
-  initEventHandler(gb, myChart);
-  setSplitPosition(0.4);
+  if (showAceEditor) {
+    initEventHandler(gb, myChart);
+    setSplitPosition(0.4);
+  }else {
+    $(window).resize(function() {
+      myChart.resize();
+    });
+  }
   /**/
 });

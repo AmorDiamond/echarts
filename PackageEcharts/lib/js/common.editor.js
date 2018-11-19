@@ -5,11 +5,10 @@ define(function () {
     percentage = Math.min(0.9, Math.max(0.1, percentage));
 
     var left = percentage * 100;
-    $('#code-container').css('width', left + '%');
+    $('#code-container').css('width', left + '%').css('display', 'block');
     $('.right-container').css('width', (100 - left) + '%')
       .css('left', left + '%');
-    $('#h-handler').css('left', left + '%');
-
+    $('#h-handler').css('left', left + '%').css('display', 'block');
     if (myChart) {
       myChart.resize();
     }

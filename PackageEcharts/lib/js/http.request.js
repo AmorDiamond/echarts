@@ -2,7 +2,7 @@ define(['jquery'], function($) {
   var httpRequest = {};
   httpRequest.get = function (requestUrl, callback) {
     var paramsUrl = requestUrl.replace('?', '');
-    var params = paramsUrl.split('&');
+    var params = requestUrl.split('&');
     var url;
     var paramsData = {};
     if (params.length > 0) {

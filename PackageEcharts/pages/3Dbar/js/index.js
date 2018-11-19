@@ -1,4 +1,4 @@
-require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ace/ace', 'ace/ext/language_tools', 'echartsGl'], function (echarts, echartsConfig, $, commonEditor, http, ace) {
+require(['common', 'echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ace/ace', 'ace/ext/language_tools', 'echartsGl'], function (common, echarts, echartsConfig, $, commonEditor, http, ace) {
   console.log(ace)
   var editor = ace.edit("line-value",{theme: "ace/theme/monokai",});
   ace.require("ace/ext/language_tools");
@@ -10,13 +10,17 @@ require(['echarts','echartsConfig', 'jquery', 'commonEditor', 'httpRequest', 'ac
   });
 
   var data;
-  var requestUrl = window.location.search;
+  var locationParams = window.location.search;
+  var commonParams = common.locationParams(locationParams);
+  var requestUrl = commonParams.requestUrl;
+  var showAceEditor = commonParams.showAceEditor;
+  var chartTitle = decodeURI(commonParams.chartTitle);
 
   var myChart = echarts.init(document.getElementById('line'));
   var option = {
     color: echartsConfig.color,
     title: {
-      text: '柱状图',
+      text: chartTitle ? chartTitle : '柱状图',
       left: 'center',
       textStyle: echartsConfig.titleStyle
     },
@@ -405,7 +409,6 @@ function run () {
     };
   }
   if (requestUrl) {
-    console.log(url);
     http.get(requestUrl, function(res) {
       data = res;
       initEchart();
@@ -415,7 +418,13 @@ function run () {
     initEchart();
     run();
   }
-  initEventHandler(gb, myChart);
-  setSplitPosition(0.4);
+  if (showAceEditor) {
+    initEventHandler(gb, myChart);
+    setSplitPosition(0.4);
+  }else {
+    $(window).resize(function() {
+      myChart.resize();
+    });
+  }
   /**/
 });
